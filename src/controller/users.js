@@ -1,19 +1,36 @@
-const todosModels = require('../models/users')
+const todosModels = require("../models/users");
 const getAllUsers = async (req, res) => {
-    const data = await todosModels.getAllUsers()
+  try {
+    const [data] = await todosModels.getAllUsers();
     res.json({
-        message: '200, GET SUCCESS',
-        data: data
-    })
-}
+      message: "GET ALL DATA SUCCESS",
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Server Error",
+      serverMessage: error,
+    });
+  }
+};
 
-const createNewUsers = (req, res) => {
+const createNewUsers = async (req, res) => {
+  const { body } = req;
+  try {
+    await UserModels.createNewUsers(body);
     res.json({
-        message: 'CREATE NEW USER'
-    })
-}
+      message: "CREATE NEW DATA SUCCESS",
+      data: req.body,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Server Error",
+      serverMessage: error,
+    });
+  }
+};
 
 module.exports = {
-    getAllUsers,
-    createNewUsers
-}
+  getAllUsers,
+  createNewUsers,
+};
