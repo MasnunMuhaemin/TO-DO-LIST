@@ -9,9 +9,9 @@ route.post("/", userController.createNewUsers);
 route.get("/", userController.getAllUsers);
 
 // UPDATE - PATCH TODOS
-route.patch("/:idUser", userController.updateUser);
+// route.patch("/:idUser", userController.updateUser);
 
 // Delete - DELETE TODOS
-route.delete("/:idUser", userController.deleteUser);
+// route.delete("/:idUser", userController.deleteUser);
 
 module.exports = route;

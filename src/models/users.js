@@ -7,7 +7,8 @@ const getAllUsers = async () => {
 };
 
 const createNewUsers = (body) => {
-  const SQLQuerry = `INSERT INTO todos (tittle, description) VALUES ('${body.tittle}', '${body.description}')`;
+  const SQLQuerry = `INSERT INTO todos (title, description, is_completed) 
+                    VALUES ('${body.title}', '${body.description}', '${body.is_completed}')`;
 
   return pool.execute(SQLQuerry);
 };

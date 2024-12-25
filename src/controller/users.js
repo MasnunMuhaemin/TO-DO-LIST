@@ -16,8 +16,9 @@ const getAllUsers = async (req, res) => {
 
 const createNewUsers = async (req, res) => {
   const { body } = req;
+  console.log(body)
   try {
-    await UserModels.createNewUsers(body);
+    await todosModels.createNewUsers(body);
     res.json({
       message: "CREATE NEW DATA SUCCESS",
       data: req.body,
