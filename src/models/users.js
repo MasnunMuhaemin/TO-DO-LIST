@@ -19,8 +19,15 @@ const updateUser = (body, idUser) => {
   return pool.execute(SQLQuerry);
 };
 
+const deleteUser = (idUser) => {
+  const SQLQuerry = `DELETE FROM todos WHERE id=${idUser}`;
+
+  return pool.execute(SQLQuerry);
+};
+
 module.exports = {
   getAllUsers,
   createNewUsers,
   updateUser,
+  deleteUser,
 };
