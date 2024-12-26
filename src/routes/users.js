@@ -8,6 +8,9 @@ route.post("/", userController.createNewUsers);
 // READ - GET ALL TODOS
 route.get("/", userController.getAllUsers);
 
+// READ - GET DETAIL BY ID
+route.get("/:idUser", userController.getByid)
+
 // UPDATE - PATCH TODOS
 route.patch("/:idUser", userController.updateUser);
 

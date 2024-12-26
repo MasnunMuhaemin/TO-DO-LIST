@@ -6,6 +6,12 @@ const getAllUsers = async () => {
   return await pool.execute(SQLQuerry);
 };
 
+const getByid = (idUser) => {
+  const SQLQuerry = `SELECT * FROM todos WHERE id=${idUser}`;
+
+  return pool.execute(SQLQuerry);
+};
+
 const createNewUsers = (body) => {
   const SQLQuerry = `INSERT INTO todos (title, description, is_completed) 
                     VALUES ('${body.title}', '${body.description}', '${body.is_completed}')`;
@@ -30,4 +36,5 @@ module.exports = {
   createNewUsers,
   updateUser,
   deleteUser,
+  getByid,
 };

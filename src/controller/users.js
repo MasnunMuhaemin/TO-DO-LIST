@@ -14,6 +14,22 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getByid = async (req, res) => {
+  const { idUser } = req.params;
+  try {
+    const [data] = await todosModels.getByid(idUser);
+    res.json({
+      message: "GET DETAIL DATA SUCCESS",
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Server Error",
+      serverMessage: error,
+    });
+  }
+};
+
 const createNewUsers = async (req, res) => {
   const { body } = req;
   try {
@@ -70,5 +86,6 @@ module.exports = {
   getAllUsers,
   createNewUsers,
   updateUser,
-  deleteUser
+  deleteUser,
+  getByid,
 };
