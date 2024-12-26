@@ -16,7 +16,6 @@ const getAllUsers = async (req, res) => {
 
 const createNewUsers = async (req, res) => {
   const { body } = req;
-  console.log(body)
   try {
     await todosModels.createNewUsers(body);
     res.json({
@@ -31,7 +30,28 @@ const createNewUsers = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  const { idUser } = req.params;
+  const { body } = req;
+  try {
+    await todosModels.updateUser(body, idUser);
+    res.json({
+      message: "UPDATE USER SUCCESS",
+      data: {
+        id: idUser,
+        ...body,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Server Error",
+      serverMessage: error,
+    });
+  }
+};
+
 module.exports = {
   getAllUsers,
   createNewUsers,
+  updateUser
 };

@@ -13,7 +13,14 @@ const createNewUsers = (body) => {
   return pool.execute(SQLQuerry);
 };
 
+const updateUser = (body, idUser) => {
+  const SQLQuerry = `UPDATE todos SET title='${body.title}', description='${body.description}', is_completed='${body.is_completed}' WHERE id='${idUser}'`;
+
+  return pool.execute(SQLQuerry);
+};
+
 module.exports = {
   getAllUsers,
   createNewUsers,
+  updateUser,
 };
