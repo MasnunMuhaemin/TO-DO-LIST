@@ -1,15 +1,16 @@
 const todosModels = require("../models/users");
+
 const getAllUsers = async (req, res) => {
   try {
     const [data] = await todosModels.getAllUsers();
     res.json({
       message: "GET ALL DATA SUCCESS",
-      data: data,
+      data: data || [],
     });
   } catch (error) {
     res.status(500).json({
       message: "Server Error",
-      serverMessage: error,
+      serverMessage: error.message,
     });
   }
 };
@@ -18,14 +19,20 @@ const getByid = async (req, res) => {
   const { idUser } = req.params;
   try {
     const [data] = await todosModels.getByid(idUser);
+
+    if (!data || data.length === 0) {
+      return res.status(404).json({
+        message: "Data tidak ditemukan",
+      });
+    }
     res.json({
       message: "GET DETAIL DATA SUCCESS",
-      data: data,
+      data: data[0],
     });
   } catch (error) {
     res.status(500).json({
       message: "Server Error",
-      serverMessage: error,
+      serverMessage: error.message,
     });
   }
 };
@@ -36,12 +43,12 @@ const createNewUsers = async (req, res) => {
     await todosModels.createNewUsers(body);
     res.json({
       message: "CREATE NEW DATA SUCCESS",
-      data: req.body,
+      data: body,
     });
   } catch (error) {
     res.status(500).json({
       message: "Server Error",
-      serverMessage: error,
+      serverMessage: error.message,
     });
   }
 };
@@ -61,7 +68,7 @@ const updateUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Server Error",
-      serverMessage: error,
+      serverMessage: error.message,
     });
   }
 };
@@ -77,7 +84,7 @@ const deleteUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Server Error",
-      serverMessage: error,
+      serverMessage: error.message,
     });
   }
 };
